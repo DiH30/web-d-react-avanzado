@@ -1,8 +1,11 @@
+import { ChatBot } from './components/ChatBot'
+import { ChatProvider } from './context/ChatContext'
 import './index.css'
-import { BasicForm } from './components/BasicForm'
 
 export const App = () => {
   return (
-    <div><BasicForm /></div>
+    <ChatProvider>
+      <ChatBot />
+    </ChatProvider>
   )
 }
