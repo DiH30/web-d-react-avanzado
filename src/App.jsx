@@ -4,7 +4,6 @@ import './index.css'
 import * as yup from 'yup'
 import axios from 'axios'
 import { useState } from 'react'
-import { useData } from './hooks/useData'
 
 // Validación con yup para que el mensaje tenga almenos 3 caracteres
 const schema = yup.object({
@@ -21,9 +20,6 @@ export const App = () => {
   // Guarda la respuesta de lama2
   const [response, setResponse] = useState('')
   const [loading, setLoading] = useState(false)
-  const { multiplicar } = useData()
-
-  console.log(multiplicar(5))
 
   const handlePregunta = async (data) => {
     console.log(data)
