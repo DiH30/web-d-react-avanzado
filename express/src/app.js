@@ -62,6 +62,29 @@ app.post('/peliculas', (req, res) => {
   writeData(data)
   res.json(newMovie) // Respuesta al usuario final, el nuevo objeto que se ha añadido.
 })
+// El PUT, modifica.
+app.put('/peliculas/:id', (req, res) => {
+  const data = readData()
+  const id = parseInt(req.params.id)
+  const body = req.body
+
+  const peliculaIndex = data.accion.findIndex(movie => movie.id === id)
+  data.accion[peliculaIndex] = {
+    ...data.accion[peliculaIndex],
+    ...body
+  }
+  writeData(data)
+  res.json({ message: 'Pelicula actualizada correctamente' })
+})
+
+app.delete('/peliculas/:id', (req, res) => {
+  const data = readData()
+  const id = parseInt(req.params.id)
+  const peliculaIndex = data.accion.findIndex(movie => movie.id === id)
+  data.accion.splice(peliculaIndex, 1) // El splice elimina lo que ya se identificó.
+  writeData(data)
+  res.json({ message: 'Pelicula eliminada correctamente' })
+})
 
 app.listen(PORT, () => {
   console.log('Servidor corriendo en puerto', PORT)
