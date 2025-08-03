@@ -1,59 +1,68 @@
-require('dotenv').config()
-// console.log(process.env.PORT)
-// console.log(process.env.NOMBRE)
-// Importamos el módulo de Express
-const express = require('express')
-const { infoPeliculas } = require('./peliculas')
+// 1. Importar express CommonJS
+/* const express = require('express')
+require('dotenv').config() */
 
-// Creamos una aplicación de Express
+// Importar express y dotenv con ESModules
+import express from 'express'
+import dotenv from 'dotenv'
+import fs from 'fs'
+
+dotenv.config()
+// 2. Crear la aplicación de express
 const app = express()
-
-// Definimos el puerto que va a escuchar el servidor
 const PORT = process.env.PORT
+
+// Función que lee la info de db.json
+// Lee el archivo y lo retorna
+const readData = () => {
+  try {
+    const data = fs.readFileSync('./src/db.json')
+    return JSON.parse(data)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+// Función que escribe dentro de db.json
+const writeData = (data) => {
+  try {
+    fs.writeFileSync('./src/db.json', JSON.stringify(data)) // Para que se recozca como un objeto.
+  } catch (error) {
+    console.error(error)
+  }
+  // return JSON.stringify(data)
+}
 
 app.get('/', (req, res) => {
   res.send('Hola mundo')
 })
 
-app.get('/api/peliculas', (req, res) => {
-  res.send(infoPeliculas)
+app.get('/peliculas', (req, res) => {
+  const data = readData()
+  res.json(data) // Para que lo interprete y lo muestre como el formato original, json.
 })
 
-app.get('/api/peliculas/accion/titulo/:titulo/:year', (req, res) => {
-  /* const titulo = req.params.titulo
-  const year = req.params.year */
-  const { titulo, year } = req.params
-  const resultados = infoPeliculas.accion.filter(pelicula => pelicula.titulo === titulo && pelicula.year === Number(year))
+app.get('/peliculas/:id', (req, res) => {
+  const id = parseInt(req.params.id)
+  const result = readData().accion.find(pelicula => pelicula.id === id)
+  res.json(result)
+})
 
-  if (resultados.length === 0) {
-    return res.status(400).send(`No se encontraron resultados para ${titulo} en el año ${year}`)
+// Para una correcta interpretación.
+app.use(express.json()) // La forma en la que se va a recibir la información y en la que va a comunicar, tiene que interpretarse en formato json.
+
+app.post('/peliculas', (req, res) => {
+  const data = readData()
+  const body = req.body
+  const newMovie = {
+    id: data.accion.length + 1,
+    ...body
   }
-
-  res.send(resultados)
-})
-
-app.get('/api/peliculas/comedia/:pais', (req, res) => {
-  const pais = req.params.pais
-  const resultados = infoPeliculas.comedia.filter(pelicula => pelicula.pais === pais)
-
-  if (req.query.ordenar === 'year') {
-    return res.send(resultados.sort((a, b) => b.year - a.year))
-  }
-
-  res.send(resultados)
-})
-
-app.use(express.json())
-app.post('/api/peliculas', (req, res) => {
-  const nuevaPelicula = req.body
-
-  console.log(nuevaPelicula)
-  res.status(201).send({
-    mensaje: 'La película se recibió con éxito',
-    datos: nuevaPelicula
-  })
+  data.accion.push(newMovie)
+  writeData(data)
+  res.json(newMovie) // Respuesta al usuario final, el nuevo objeto que se ha añadido.
 })
 
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`)
+  console.log('Servidor corriendo en puerto', PORT)
 })
