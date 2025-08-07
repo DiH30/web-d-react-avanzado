@@ -1,3 +1,16 @@
 {
-  "messages": []
+  "messages": [
+    {
+      "id": 1754560140715,
+      "text": "Hola Diana",
+      "sender": "user",
+      "timestamp": "2025-08-07T09:49:00.715Z"
+    },
+    {
+      "id": 1754560140716,
+      "text": "React express",
+      "sender": "bot",
+      "timestamp": "2025-08-07T09:49:00.715Z"
+    }
+  ]
 }
