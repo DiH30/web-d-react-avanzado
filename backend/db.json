@@ -11,6 +11,36 @@
       "text": "React express",
       "sender": "bot",
       "timestamp": "2025-08-07T09:49:00.715Z"
+    },
+    {
+      "id": 1754732181694,
+      "text": "que es react?",
+      "sender": "user",
+      "timestamp": "2025-08-09T09:36:21.694Z"
+    },
+    {
+      "id": 1754732224012,
+      "text": "hola",
+      "sender": "user",
+      "timestamp": "2025-08-09T09:37:04.012Z"
+    },
+    {
+      "id": 1754744107994,
+      "text": "hola",
+      "sender": "user",
+      "timestamp": "2025-08-09T12:55:07.994Z"
+    },
+    {
+      "id": 1755571960166,
+      "text": "hola",
+      "sender": "user",
+      "timestamp": "2025-08-19T02:52:40.166Z"
+    },
+    {
+      "id": 1755572428562,
+      "text": "Hola, ¿cómo estás?",
+      "sender": "bot",
+      "timestamp": "2025-08-19T03:00:28.562Z"
     }
   ]
 }

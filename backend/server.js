@@ -8,7 +8,7 @@ const PORT = 3001
 
 // Middleware para CORS y JSON
 app.use(cors())
-app.use(express.json())
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('Hola mundo')
