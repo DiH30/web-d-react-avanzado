@@ -55,14 +55,13 @@ export const ChatBot = () => {
 
       const botMessage = { from: 'bot', text: res.data.response }
 
-      // Guardar el mensaje del bot en la base de datos
+      // Guardar mensaje del bot en la base de datos
       await axios.post('http://localhost:3001/api/messages', {
         sender: 'bot',
-        text: 'Hola, ¿cómo estás?'
-        // text: res.data.response}
+        text: res.data.response
       })
 
-      dispatch({ type: 'ADD_MESSAGE', payload: { botMessage } })
+      dispatch({ type: 'ADD_MESSAGE', payload: botMessage })
     } catch (error) {
       console.log(error)
     } finally {

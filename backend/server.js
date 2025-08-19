@@ -8,14 +8,21 @@ const PORT = 3001
 
 // Middleware para CORS y JSON
 app.use(cors())
-app.use(express.json());
+app.use(express.json())
 
 app.get('/', (req, res) => {
   res.send('Hola mundo')
 })
 
 app.post('/api/chat', async (req, res) => {
+  console.log("Cuerpo de la solicitud:", req.body);  // Se imprime lo que llega al servidor
+
   const { prompt } = req.body
+   // Verificamos si 'prompt' está vacío o no llega
+  if (!prompt) {
+    return res.status(400).json({ error: 'Falta el campo "prompt"' });
+  }
+
 
   try {
     const response = await generateFromOllama(prompt)
@@ -34,7 +41,7 @@ app.get('/api/messages', async (req, res) => {
 
 // POST: Ruta para agregar nuevo mensaje
 app.post('/api/messages', async (req, res) => {
-  // text: contenido, sender:quien envia.
+  // text: contenido, sender: quien envía.
   const { text, sender } = req.body
   if (!text || !sender) {
     return res.status(400).json({ error: 'Faltan campos en el objeto' })

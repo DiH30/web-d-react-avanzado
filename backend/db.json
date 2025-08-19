@@ -41,6 +41,42 @@
       "text": "Hola, ¿cómo estás?",
       "sender": "bot",
       "timestamp": "2025-08-19T03:00:28.562Z"
+    },
+    {
+      "id": 1755575444533,
+      "text": "que es react?",
+      "sender": "user",
+      "timestamp": "2025-08-19T03:50:44.533Z"
+    },
+    {
+      "id": 1755579067145,
+      "text": "Hola, ¿cómo estás?",
+      "sender": "bot",
+      "timestamp": "2025-08-19T04:51:07.145Z"
+    },
+    {
+      "id": 1755581141829,
+      "text": "hola",
+      "sender": "user",
+      "timestamp": "2025-08-19T05:25:41.829Z"
+    },
+    {
+      "id": 1755585299636,
+      "text": "hola",
+      "sender": "user",
+      "timestamp": "2025-08-19T06:34:59.636Z"
+    },
+    {
+      "id": 1755589307783,
+      "text": "hola",
+      "sender": "user",
+      "timestamp": "2025-08-19T07:41:47.783Z"
+    },
+    {
+      "id": 1755589563137,
+      "text": "Hola, ¿cómo estás?",
+      "sender": "bot",
+      "timestamp": "2025-08-19T07:46:03.137Z"
     }
   ]
 }
